@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
 get '/' do
+  @user = User.find_by(params[:user_id])
   erb :home
 end
 
@@ -21,13 +22,13 @@ end
     def current_user
       User.find(session[:user_id])
     end
-    def partial(template, opts={})
-        parts = template.split('/')
-    last = "_#{parts.pop}"
-
-    erb([parts, last].flatten.join('/').to_sym, {layout: false}.merge(opts))
-
-    end
+    # def partial(template, opts={})
+    #     parts = template.split('/')
+    # last = "_#{parts.pop}"
+    #
+    # erb([parts, last].flatten.join('/').to_sym, {layout: false}.merge(opts))
+    #
+    # end
   end
 
 
