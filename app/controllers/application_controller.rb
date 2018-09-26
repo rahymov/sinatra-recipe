@@ -21,8 +21,14 @@ end
     def current_user
       User.find(session[:user_id])
     end
+    def partial(template, opts={})
+        parts = template.split('/')
+    last = "_#{parts.pop}"
 
+    erb([parts, last].flatten.join('/').to_sym, {layout: false}.merge(opts))
+
+    end
   end
 
-  
+
 end
