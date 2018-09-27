@@ -1,0 +1,12 @@
+* create users controller, model, migration
+* create recipes controller, model, migration
+* styling bootstrap
+* add title="about button input etc"
+
+
+
+## Users
+* user could signup new account without problem
+* user signup full_name, username, email, password
+* after signup redirect to home page
+* user could login if they account
