@@ -5,3 +5,13 @@
 .navbar-light a.navbar-brand {
     color: rgba(255,255,255,1);
 }
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
