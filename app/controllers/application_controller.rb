@@ -1,7 +1,8 @@
 require './config/environment'
 
-class ApplicationController < Sinatra::Base
 
+class ApplicationController < Sinatra::Base
+# require 'sinatra/flash'
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'

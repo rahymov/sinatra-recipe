@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'paperclip'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rspec'

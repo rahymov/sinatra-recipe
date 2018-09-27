@@ -1,8 +1,20 @@
-<h2>Sign Up</h2>
-<form action="/signup" method="POST">
-  <p>Full Name: <input type="text" name="username" placeholder="Full Name"></p>
-  <p>Username: <input type="text" name="username" placeholder="Username"></p>
-  <p>Email: <input type="email" name="email" placeholder="sample@email.com"></p>
-  <p>Password: <input type="password" name="password" placeholder="password"></p>
-  <input class="btn btn-primary" type="submit">
-</form>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2 class="text-center">Sign Up</h2>
+    <form action="/signup" method="POST">
+      <div class="form-group">
+        <p>Full Name: <input type="text" name="username" placeholder="Full Name" class="form-control"></p>
+      </div>
+      <div class="form-group">
+        <p>Username: <input type="text" name="username" placeholder="Username" class="form-control"></p>
+      </div>
+      <div class="form-group">
+        <p>Email: <input type="email" name="email" placeholder="sample@email.com" class="form-control"></p>
+      </div>
+      <div class="form-group">
+        <p>Password: <input type="password" name="password" placeholder="password" class="form-control"></p>
+      </div>
+      <input class="btn btn-primary" type="submit">
+    </form>
+  </div>
+</div>

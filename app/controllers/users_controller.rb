@@ -16,10 +16,12 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:full_name] == "" || params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
+      flash[:error] = "Can't be blank."
     else
       @user = User.new(full_name: params[:full_name], username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
+      flash[:success] = "Successfully signed up."
       redirect to '/'
     end
   end
@@ -36,9 +38,9 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/"
+      redirect "/", locals: {message: "you logged in."}
     else
-      redirect to '/signup'
+      redirect to '/login'
     end
   end
 
