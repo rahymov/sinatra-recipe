@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  # use Rack::Session::Pool, :expire_after => 1800
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'users/show'
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if !session[:user_id]
       erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
     else
-      redirect to '/home'
+      redirect to '/'
     end
   end
 
