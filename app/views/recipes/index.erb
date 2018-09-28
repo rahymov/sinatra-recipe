@@ -1,1 +1,17 @@
-<h1>All Recipes</h1>
+<div class="container">
+  <div class="card-deck">
+    <% @recipes.each do |recipe| %>
+    <div class="card">
+      <img class="card-img-top" src="<%= recipe.image %>" alt="<%= recipe.title %>">
+
+      <div class="card-body">
+        <h5 class="card-title"><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></h5>
+        <p class="card-text"><%= recipe.description %></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
