@@ -1,0 +1,26 @@
+<div class="col-md-6 offset-md-3">
+  <h1>Edit Recipe</h1>
+  <form class="" action="/recipes/<%=@recipe.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" class="form-control" value="<%=@recipe.title %>">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" name="description" value="<%= @recipe.description %>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Ingredients</label>
+      <input type="text" name="ingredient" value="<%=@recipe.ingredient%>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Directions</label>
+      <input type="text" name="directions" value="<%=@recipe.description %>" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Upload Image</label>
+    </div>
+    <input type="submit" value="Update Recipe" class="btn btn-primary">
+  </form>
+</div>
