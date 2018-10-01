@@ -1,17 +1,18 @@
-<div class="col-lg-6">
-  <div class="row">
-    <div class="container">
-      <div class="card">
-        <h1><%= @recipe.title %></h1>
-        <h3><%= @recipe.ingredient %></h3>
-        <h3><%= @recipe.directions %></h3>
-      </div>
-        <form method="post" action="/recipes/<%=@recipe.id%>/delete">
-          <input id="hidden" type="hidden" name="_method" value="DELETE">
-          <input type="submit" name="delete" value="Delete" class="btn btn-danger" title="delete">
-        </form>
-        <a href="/recipes/<%=@recipe.id%>/edit" class="btn btn-primary" title="edit">Edit</a>
-        <a href="/recipes" class="btn btn-secondary" title="back">Back</a>
-    </div>
+<hr>
+<div class="col-lg-8 offset-lg-2">
+  <div class="card">
+    <h1><%= @recipe.title %></h1>
+    <h3><%= @recipe.ingredient %></h3>
+    <h3><%= @recipe.directions %></h3>
   </div>
+  <% @recipe.categories.each do |cat| %>
+  <button type="button" name="button" class="btn btn-sm btn-success" title="<%= cat.name %>"><%= cat.name %></button>
+  <% end %>
+  <br> <br>
+    <form method="post" action="/recipes/<%=@recipe.id%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" name="delete" value="Delete" class="btn btn-danger float-right" title="delete">
+    </form> <br>
+    <a href="/recipes/<%=@recipe.id%>/edit" class="btn btn-primary" title="edit">Edit</a>
+    <a href="/recipes" class="btn btn-secondary" title="back">Back</a>
 </div>

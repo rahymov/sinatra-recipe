@@ -8,12 +8,15 @@
       <li class="nav-item">
         <a class="nav-link" href="/recipes">All Recipes</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories">Categories</a>
+      </li>
       <% if logged_in? %>
       <li class="nav-item">
-        <a class="nav-link" id="float-right"> Welcome <%= current_user.username %></a>
+        <a class="nav-link" id="float-right" href="/recipes/new">Create Recipe</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="float-right" href="/recipes/new">Create Recipe</a>
+        <a class="nav-link" id="float-right"> Welcome <%= current_user.username %></a>
       </li>
         <li class="nav-item">
           <a class="nav-link" id="float-right" href="/logout">Logout</a>
