@@ -1,9 +1,16 @@
-html, body{
-  background-color: grey;
+html,body{
+  background-color: #fbfcfe;
+  height: 100%;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
 }
 .navbar-light .navbar-nav a.nav-link {
     color: white;
 }
+.navbar-expand-lg {
+   margin : 0 !important;
+ }
 
 .navbar-light a.navbar-brand {
     color: rgba(255,255,255,1);
@@ -11,16 +18,26 @@ html, body{
 #navbar {
   box-shadow: 0px 0px 11px #000;
   padding: 10px;
+   margin : 0 !important;
 }
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.row{
+  margin-top: 10px;
+}
+.container {
+  margin-top: 5px;
+}
+footer.footer {
+  position: fixed;
   left: 0;
-  padding: 1rem;
-  background-color: #fbfcfe;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: #000;
+  line-height: 50px;
   text-align: center;
+  background-color: #f5f5f5;
 }
+
 #float-right{
   display: flex;
   float: right !important;

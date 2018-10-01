@@ -1,7 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-# require 'sinatra/flash'
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     @user = User.find_by(params[:user_id])
+    @categories = Category.all
     erb :home
   end
 

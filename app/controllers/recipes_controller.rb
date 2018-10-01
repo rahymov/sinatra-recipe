@@ -1,10 +1,13 @@
+
 class RecipesController < ApplicationController
 
   get '/recipes' do
     @user = User.find_by(params[:id])
+    @recipe = Recipe.find_by_id(params[:id])
+    # @recipe.categories
     @categories = Category.all
     if logged_in?
-      @recipes = Recipe.all
+      @recipes = Recipe.all.order("created_at DESC")
       erb :'recipes/index'
     else
       redirect to '/login'
