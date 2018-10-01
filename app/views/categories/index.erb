@@ -1,0 +1,10 @@
+<hr>
+<div class="col-md-12">
+
+    <% @categories.each do |category| %>
+    <div class="btn btn-primary btn-sm">
+      <a href="/recipes"><%= category.name %></a>
+    </div>
+    <% end %>
+
+</div>
