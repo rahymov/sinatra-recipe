@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
 
   get '/recipes/new' do
     @user = User.find_by(params[:id])
+    @categories = Category.all
     if session[:user_id]
       erb :'recipes/new'
     else
@@ -25,12 +26,16 @@ class RecipesController < ApplicationController
 
     else
       user = User.find_by_id(session[:user_id])
-      @recipe = Recipe.create(title: params[:title],
+      # @categories = Category.find_by(params[:category_ids])
+      @recipe = Recipe.new(title: params[:title],
                               description: params[:description],
                               ingredient: params[:ingredient],
                               directions: params[:ingredient],
+                              
                               image: params[:image],
                               :user_id => user.id)
+      @recipe.category_ids = params[:categories]
+      @recipe.save
       redirect to "/recipes/#{@recipe.id}"
     end
   end
@@ -76,7 +81,8 @@ class RecipesController < ApplicationController
   end
 
   delete '/recipes/:id/delete' do
-    user = User.find(params[:id])
+    # user = User.find(params[:id])
+    current_user
     @recipe = Recipe.find_by_id(params[:id])
     if session[:user_id]
       @recipe = Recipe.find_by_id(params[:id])

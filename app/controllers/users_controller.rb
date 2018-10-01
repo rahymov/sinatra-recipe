@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @user = User.new(full_name: params[:full_name], username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Successfully signed up."
+      session[:message] = "Successfully signed up."
       redirect to '/'
     end
   end

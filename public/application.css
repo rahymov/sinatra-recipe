@@ -1,3 +1,6 @@
+html, body{
+  background-color: grey;
+}
 .navbar-light .navbar-nav a.nav-link {
     color: white;
 }
@@ -22,4 +25,13 @@
   display: flex;
   float: right !important;
   margin-left: auto;
+}
+.category-name-checkbox input[type=checkbox], input[type=radio]{
+  margin-left: 3px;
+}
+
+button.btn.btn-primary a{
+  color: black;
+  margin-left: 3px;
+  margin-bottom: 2px;
 }
