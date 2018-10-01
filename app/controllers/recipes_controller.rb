@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
 
   get '/recipes' do
     @user = User.find_by(params[:id])
+    @categories = Category.all
     if logged_in?
       @recipes = Recipe.all
       erb :'recipes/index'
@@ -31,7 +32,7 @@ class RecipesController < ApplicationController
                               description: params[:description],
                               ingredient: params[:ingredient],
                               directions: params[:ingredient],
-                              
+
                               image: params[:image],
                               :user_id => user.id)
       @recipe.category_ids = params[:categories]
