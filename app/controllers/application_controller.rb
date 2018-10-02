@@ -1,7 +1,10 @@
 require './config/environment'
-
+require 'sinatra/base'
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
-
+  use Rack::Session::Cookie, :expire_after => 60*60*24
+  enable :sessions
+  use Rack::Flash
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'

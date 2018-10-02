@@ -3,12 +3,16 @@ class RecipesController < ApplicationController
 
   get '/search' do
   @recipes = Recipe.all
-  if params[:search]
-    @recipes = Recipe.search(params[:search])
-  else
-    @recipes = Recipe.all
-  end
-    # erb :'recipes/results'
+   if current_user
+      if params[:search]
+        @recipes = Recipe.search(params[:search])
+      else
+        @recipes = Recipe.all
+      end
+   else
+    redirect to '/login'
+   end
+      # erb :'recipes/results'
   end
 
   post '/search' do
@@ -16,18 +20,19 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes' do
-    @user = User.find_by(params[:id])
+    user = User.find_by(params[:id])
     @recipe = Recipe.find_by_id(params[:id])
     # @recipes = Recipe.all(:name.like => "#{params[:name]}")
     @category = Category.find_by(params[:id])
     @category_recipes = @category.recipes
-
+    # @recipe.user = @user
     @categories = Category.all
     if logged_in?
       @recipes = Recipe.all.order("created_at DESC")
       erb :'recipes/index'
     else
       redirect to '/login'
+      flash[:message] = "You have to login"
     end
   end
 
@@ -37,6 +42,7 @@ class RecipesController < ApplicationController
     if session[:user_id]
       erb :'recipes/new'
     else
+      flash[:message] = "You have to login"
       redirect to '/recipes'
     end
   end
@@ -64,7 +70,7 @@ class RecipesController < ApplicationController
       File.open("./public/#{@recipe.image}", 'wb') do |f|
         f.write(file.read)
       end
-
+      flash[:message] = "Recipe created successfully."
       redirect to "/recipes/#{@recipe.id}"
     end
   end
@@ -106,6 +112,7 @@ class RecipesController < ApplicationController
       @recipe.image = params[:image]
       @recipe.save
       redirect to '/recipes'
+      flash[:message] = "Recipe updated successfully."
     end
   end
 
@@ -117,6 +124,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find_by_id(params[:id])
       if @recipe.user_id == session[:user_id]
         @recipe.delete
+        flash[:message] = "Recipe deleted successfully."
         redirect to '/recipes'
       else
         redirect to '/recipes'

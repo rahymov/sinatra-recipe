@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @user = User.new(full_name: params[:full_name], username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      session[:message] = "Successfully signed up."
+      session[:notice] = "Successfully signed up."
       redirect to '/'
     end
   end
@@ -38,7 +38,8 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/", locals: {message: "you logged in."}
+      flash[:notice] = "you are logged in."
+      redirect "/"
     else
       redirect to '/login'
     end
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if session[:user_id] != nil
       session.destroy
+      flash[:message] = "Successfully get out"
       redirect to '/login'
     else
       redirect to '/'
