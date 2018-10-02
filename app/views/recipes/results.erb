@@ -1,0 +1,9 @@
+<% if @recipes.present? %>
+  <% @recipes.each do |recipe| %>
+    <h2><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></h2>
+    <h3><%= recipe.description %></h3>
+    <h3><%= recipe.ingredient %></h3>
+  <% end %>
+<% else %>
+  <p>There are no Recipes containing the term(s) <%= params[:search] %>.</p>
+<% end %>
