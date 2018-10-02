@@ -1,10 +1,27 @@
 
 class RecipesController < ApplicationController
 
+  get '/search' do
+  @recipes = Recipe.all
+  if params[:search]
+    @recipes = Recipe.search(params[:search])
+  else
+    @recipes = Recipe.all
+  end
+    # erb :'recipes/results'
+  end
+
+  post '/search' do
+    erb :'recipes/results'
+  end
+
   get '/recipes' do
     @user = User.find_by(params[:id])
     @recipe = Recipe.find_by_id(params[:id])
-    # @recipe.categories
+    # @recipes = Recipe.all(:name.like => "#{params[:name]}")
+    @category = Category.find_by(params[:id])
+    @category_recipes = @category.recipes
+
     @categories = Category.all
     if logged_in?
       @recipes = Recipe.all.order("created_at DESC")
@@ -39,7 +56,15 @@ class RecipesController < ApplicationController
                               image: params[:image],
                               :user_id => user.id)
       @recipe.category_ids = params[:categories]
+
+      @filename = params[:file][:filename]
+      file = params[:file][:tempfile]
+      @recipe.image = @filename
       @recipe.save
+      File.open("./public/#{@recipe.image}", 'wb') do |f|
+        f.write(file.read)
+      end
+
       redirect to "/recipes/#{@recipe.id}"
     end
   end
