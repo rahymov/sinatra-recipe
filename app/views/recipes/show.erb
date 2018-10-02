@@ -2,9 +2,9 @@
 <div class="col-lg-8 offset-lg-2">
   <div class="card">
     <!-- <img class="card-img-top" src="<%= @recipe.image %>" alt="<%= @recipe.title%>"> -->
-    <h1><%= @recipe.title %></h1>
-    <h3><%= @recipe.ingredient %></h3>
-    <h3><%= @recipe.directions %></h3>
+    <h1><small>Title:</small> <%= @recipe.title %></h1>
+    <h3><small>Ingredients:</small> <%= @recipe.ingredient %></h3>
+    <h3><small>Directions:</small> <%= @recipe.directions %></h3>
   </div>
   <% @recipe.categories.each do |cat| %>
   <button type="button" name="button" class="btn btn-sm btn-success" title="<%= cat.name %>"><%= cat.name %></button>
