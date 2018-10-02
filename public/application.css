@@ -1,10 +1,9 @@
 html,body{
-  background-color: #fbfcfe;
+  background-color: #E8F1F2;
   height: 100%;
+  position: relative;
 }
-*, ::after, ::before {
-    box-sizing: border-box;
-}
+
 .navbar-light .navbar-nav a.nav-link {
     color: white;
 }
@@ -19,6 +18,13 @@ html,body{
   box-shadow: 0px 0px 11px #000;
   padding: 10px;
    margin : 0 !important;
+   background-color: #13293D;
+}
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
+  color: rgba(29, 233, 236, 0.9);
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+  color: #1B98E0;
 }
 .row{
   margin-top: 10px;
@@ -31,12 +37,13 @@ footer.footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: red;
+  height: 40px;
   color: #000;
-  line-height: 50px;
   text-align: center;
-  background-color: #f5f5f5;
+  font-weight: normal;
+  background-color: #247BA0;
 }
+
 
 #float-right{
   display: flex;
@@ -51,4 +58,9 @@ button.btn.btn-primary a{
   color: black;
   margin-left: 3px;
   margin-bottom: 2px;
+}
+
+.jumbotron{
+  color: #006494;
+  background-color: #fff;
 }
