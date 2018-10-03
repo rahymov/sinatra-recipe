@@ -111,8 +111,8 @@ class RecipesController < ApplicationController
       @recipe.directions = params[:directions]
       @recipe.image = params[:image]
       @recipe.save
-      redirect to '/recipes'
       flash[:message] = "Recipe updated successfully."
+      redirect to '/recipes'
     end
   end
 
