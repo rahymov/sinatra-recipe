@@ -5,9 +5,11 @@
 
 ### Start the project
 
-  ```git clone https://github.com/rahymov/sinatra-recipe ```
-  ``` rake db:migrate ```
-  start local server ``` shotgun ```
+* ```git clone https://github.com/rahymov/sinatra-recipe ```
+
+* ``` rake db:migrate ```
+
+* start local server ``` shotgun ```
 
 ### File Structure
 ```
