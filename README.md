@@ -3,8 +3,9 @@
 ## Overviews
   User could create an account and login. If user not logged in could not see recipes or created or edit. If user logged in cannot edit other users recipe or delete. User could edit or delete just their recipes.
 
-### Clone
-  ```git clone link ```
+### Start the project
+
+  ```git clone https://github.com/rahymov/sinatra-recipe ```
   ``` rake db:migrate ```
   start local server ``` shotgun ```
 
