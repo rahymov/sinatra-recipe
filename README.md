@@ -1,7 +1,12 @@
 # Welcome to Recipe Sinatra Project
 
 ## Overviews
+  User could create an account and login. If user not logged in could not see recipes or created or edit. If user logged in cannot edit other users recipe or delete. User could edit or delete just their recipes.
 
+### Clone
+  ```git clone link ```
+  ``` rake db:migrate ```
+  start local server ``` shotgun ```
 
 ### File Structure
 ```
@@ -38,5 +43,22 @@
 │       ├── home.erb
 │       ├── layout.erb
 ├── config
-      ├── environment.rb
+|      ├── environment.rb
+├── db
+│     ├── migrate
+│           ├── 20180925163632_create_users.rb
+│           ├── 20180927171039_create_recipes.rb
+│           ├── 20180929030513_create_categories.rb
+│           ├── 20180929031801_create_recipe_categories.rb
+│           ├── 20180929034257_add_missing_timestamps.rb
+│
+│── public
+│    ├── application.css
+│── config.ru
+│── Gemfile    
+│── Gelfile.lock
+│── LICENSE.txt
+│── Rakefile
+│── Rakefile
+│── README.md     
 ```
