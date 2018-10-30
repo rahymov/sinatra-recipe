@@ -4,7 +4,7 @@
 
     <% @categories.each do |category| %>
     <div class="btn btn-sm">
-      <a href="/recipes/<%= category.recipes %>"><%= category.name %></a>
+      <a href="/categories/<%= category.id %>/recipes"><%= category.name %></a>
     </div>
     <% end %>
 </div>
