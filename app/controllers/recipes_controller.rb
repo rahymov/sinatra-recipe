@@ -19,6 +19,16 @@ class RecipesController < ApplicationController
     erb :'recipes/results'
   end
 
+  get '/categories/:id/recipes' do
+    # find the category
+    @category = Category.find(params[:id])
+    @recipes = @category.recipes
+    @categories = Category.all
+    # assign an instance variable to its recipes
+    erb :'recipes/index'
+    # render
+  end
+
   get '/recipes' do
     user = User.find_by(params[:id])
     @recipe = Recipe.find_by_id(params[:id])
@@ -31,15 +41,15 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all.order("created_at DESC")
       erb :'recipes/index'
     else
-      redirect to '/login'
       flash[:message] = "You have to login"
+      redirect to '/login'
     end
   end
 
   get '/recipes/new' do
     @user = User.find_by(params[:id])
     @categories = Category.all
-    if session[:user_id]
+    if logged_in?
       erb :'recipes/new'
     else
       flash[:message] = "You have to login"
@@ -77,7 +87,7 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id' do
     @user = User.find_by(params[:id])
-    if session[:user_id]
+    if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
       erb :'recipes/show'
     else
@@ -87,7 +97,7 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id/edit' do
     @user = User.find_by(params[:id])
-    if session[:user_id]
+    if logged_in?
       @recipe = Recipe.find_by(params[:id])
       if @recipe.user_id == session[:user_id]
         erb :'recipes/edit'
@@ -95,6 +105,7 @@ class RecipesController < ApplicationController
         redirect to '/recipes'
       end
     else
+      flash[:message] = "You should login."
       redirect to '/login'
     end
   end
@@ -120,7 +131,7 @@ class RecipesController < ApplicationController
     # user = User.find(params[:id])
     current_user
     @recipe = Recipe.find_by_id(params[:id])
-    if session[:user_id]
+    if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
       if @recipe.user_id == session[:user_id]
         @recipe.delete
