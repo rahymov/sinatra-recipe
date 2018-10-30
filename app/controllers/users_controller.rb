@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         flash[:message] = "Successfully signed up."
         redirect to '/'
       else
-        flash[:message] = "Username and email should be unique."
+        flash[:message] = "Username should be unique."
         redirect to '/signup'
       end
     end
