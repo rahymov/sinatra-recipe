@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    if !session[:user_id]
-      erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
+    if !logged_in?
+      erb :'users/create_user'
     else
       redirect to '/'
     end
@@ -16,18 +16,23 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:full_name] == "" || params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
-      flash[:error] = "Can't be blank."
+      flash[:message] = "Can't be blank."
     else
       @user = User.new(full_name: params[:full_name], username: params[:username], email: params[:email], password: params[:password])
-      @user.save
-      session[:user_id] = @user.id
-      session[:notice] = "Successfully signed up."
-      redirect to '/'
+      if @user.valid?
+        @user.save
+        session[:user_id] = @user.id
+        flash[:message] = "Successfully signed up."
+        redirect to '/'
+      else
+        flash[:message] = "Username and email should be unique."
+        redirect to '/signup'
+      end
     end
   end
 
   get '/login' do
-    if !session[:user_id]
+    if !logged_in?
       erb :'users/login'
     else
       redirect to '/home'
@@ -38,7 +43,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "you are logged in."
+      flash[:message] = "Logged in successfully."
       redirect "/"
     else
       redirect to '/login'
@@ -48,7 +53,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if session[:user_id] != nil
       session.destroy
-      flash[:message] = "Successfully got out"
+      flash[:message] = "Successfully logged out."
       redirect to '/login'
     else
       redirect to '/'
