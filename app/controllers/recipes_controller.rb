@@ -96,22 +96,23 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/:id/edit' do
-    @user = User.find_by(params[:id])
     if logged_in?
-      @recipe = Recipe.find_by(params[:id])
-      if @recipe.user_id == session[:user_id]
+      @recipe = Recipe.find_by(id: params[:id])
+      if @recipe && @recipe.user == current_user
         erb :'recipes/edit'
       else
+        flash[:message] = "You are not authorized."
         redirect to '/recipes'
       end
     else
-      flash[:message] = "You should login."
+      flash[:message] = "You are not authorized."
       redirect to '/login'
     end
+
   end
 
   patch '/recipes/:id' do
-    @user = User.find(params[:id])
+    @recipe = Recipe.find_by(id: params[:id])
     if params[:title].blank? && params[:description].blank? && params[:ingredient].blank? && params[:directions].blank?
       redirect to '/recipes/#{params[:id]}/edit'
     else
