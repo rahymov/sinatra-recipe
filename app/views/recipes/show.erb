@@ -10,10 +10,12 @@
   <button type="button" name="button" class="btn btn-sm btn-success" title="<%= cat.name %>"><%= cat.name %></button>
   <% end %>
   <br> <br>
+  <% if @recipe.user_id == session[:user_id] %>
     <form method="post" action="/recipes/<%=@recipe.id%>/delete">
       <input id="hidden" type="hidden" name="_method" value="DELETE">
       <input type="submit" name="delete" value="Delete" class="btn btn-danger float-right" title="delete">
     </form> <br>
     <a href="/recipes/<%=@recipe.id%>/edit" class="btn btn-primary" title="edit">Edit</a>
+  <% end %>
     <a href="/recipes" class="btn btn-secondary" title="back">Back</a>
 </div>
